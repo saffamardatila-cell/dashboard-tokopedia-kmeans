@@ -7,22 +7,22 @@ st.caption("Metode: TF-IDF + K-Means Clustering (K=3) | Daffa Putra Hartanto - 2
 
 clusters = {
     "Cluster 0 - Promo, Voucher & Diskon": {
-        "jumlah": 937, "persen": 16.24,
+        "jumlah": 1000, "persen": 16.76,
         "kata": ["promo", "voucher", "diskon", "gagal", "klaim", "flash sale"],
         "desc": "Keluhan promo, voucher & diskon tidak dapat digunakan.",
         "contoh": ["Voucher promo gagal dipakai padahal masih berlaku", "Diskon flash sale tidak bisa diklaim", "Kode promo selalu gagal saat checkout"]
     },
-    "Cluster 1 - Ongkir & Pengiriman": {
-        "jumlah": 349, "persen": 6.05,
-        "kata": ["ongkir", "biaya", "harga", "kirim", "kurir", "rusak", "terlambat"],
-        "desc": "Keluhan biaya ongkir dan pengiriman.",
-        "contoh": ["Ongkir mahal banget padahal dekat", "Kurir terlambat, paket rusak saat sampai", "Biaya kirim naik terus, harga jadi mahal"]
+    "Cluster 1 - Barang / Belanja": {
+        "jumlah": 4077, "persen": 68.35,
+       "kata": ["barang","belanja","harga","toko","produk","kualitas","bagus","sesuai","pesan","pengiriman"],
+        "desc": "Keluhan seputar barang, harga, kualitas produk, dan pengalaman belanja.",
+        "contoh": "Barang tidak sesuai deskripsi, harga mahal, kualitas jelek.",
     },
-    "Cluster 2 - Akun, Dana & Kendala Aplikasi": {
-        "jumlah": 4484, "persen": 77.71,
-        "kata": ["saldo", "top up", "verifikasi", "KTP", "dana", "refund"],
-        "desc": "Keluhan akun, dana & kendala aplikasi. Klaster paling dominan.",
-        "contoh": ["Saldo tidak masuk padahal sudah top up", "Verifikasi KTP gagal terus, dana tertahan", "Refund lama banget tidak kembali ke saldo"]
+    "Cluster 2 - Aplikasi": {
+        "jumlah": 888, "persen": 14.89,
+       "kata": ["aplikasi","error","login","update","bug","lemot","akun","keluar","buka","gagal"],
+       "desc": "Keluhan seputar error, login, dan kendala teknis aplikasi.",
+        "contoh": "Aplikasi error, tidak bisa login, lemot setelah update.",
     },
 }
 
@@ -33,7 +33,7 @@ def prediksi_cluster(teks):
         skor[nama] = sum(1 for k in info["kata"] if k.lower() in t)
     best = max(skor, key=skor.get)
     if skor[best] == 0:
-        return "Cluster 2 - Akun, Dana & Kendala Aplikasi", 0
+     return "Cluster 2 - Aplikasi", 0
     return best, skor[best]
 
 st.sidebar.header("Filter")
